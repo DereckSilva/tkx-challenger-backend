@@ -26,10 +26,10 @@ class TaskRepository {
       return Task::all()->toArray();
     }
 
-    public function update (array $oldTask): array|HttpResponseException {
+    public function update (int $id, array $oldTask): array|HttpResponseException {
       DB::beginTransaction();
       try {
-        $task = $this->show($oldTask['id']);
+        $task = $this->show($id);
         $task->update($oldTask);
         DB::commit();
         return $task->toArray();
@@ -51,10 +51,9 @@ class TaskRepository {
       }
     }
 
-    public function delete(int $id): array|HttpResponseException {
+    public function delete(Task $task): array|HttpResponseException {
       DB::beginTransaction();
       try {
-        $task = $this->show($id);
         $task->delete();
         return [];
       } catch (PDOException $exception) {

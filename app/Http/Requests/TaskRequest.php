@@ -30,14 +30,15 @@ class TaskRequest extends FormRequest
         return [
             'title'       => ['required', 'string'],
             'description' => ['required', 'string'],
-            'user_id'     => ['required', 'integer']
+            'user_id'     => ['required', 'integer', 'exists:users,id']
         ];
     }
 
     public function messages(): array {
         return [
             'user_id.required' => 'O usuário da tarefa é obrigatório.',
-            'user_id.integer'  => 'O id do usuário deve ser um inteiro',
+            'user_id.integer'  => 'O id do usuário deve ser um inteiro.',
+            'user_id.exists'   => 'O usuário informado não está cadastrado no sistema.',
 
             'title.required' => 'O título da tarefa é obrigatório.',
             'title.string'   => 'O título deve ser uma string.',

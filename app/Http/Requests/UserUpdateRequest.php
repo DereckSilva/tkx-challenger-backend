@@ -2,10 +2,9 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Contracts\Validation\Validator;
-use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Validation\Rules\Password;
 
-class TaskUpdateRequest extends TaskRequest
+class UserUpdateRequest extends UserRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,11 +21,10 @@ class TaskUpdateRequest extends TaskRequest
      */
     public function rules(): array
     {
-        $taskRules                = parent::rules();
-        $taskRules['title']       = ['string'];
-        $taskRules['description'] = ['string'];
-        $taskRules['user_id']     = ['integer', 'exists:users,id'];
-        return $taskRules;
+        $userRules             = parent::rules();
+        $userRules['name']     = ['string', 'min:5', 'max:15'];
+        $userRules['email']    = ['email', 'unique:users,email,except,id'];
+        unset($userRules['password']);
+        return $userRules;
     }
-
 }

@@ -29,9 +29,9 @@ class UserRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name'     => ['requied', 'string', 'min:5', 'max:15'],
-            'email'    => ['requied', 'email'],
-            'password' => ['requied', Password::min(6)->max(8)->numbers()->letters()->symbols()]
+            'name'     => ['required', 'string', 'min:5', 'max:15'],
+            'email'    => ['required', 'email', 'unique:users,email,except,id'],
+            'password' => ['required', Password::min(6)->numbers()->letters()->symbols()]
         ];
     }
     
@@ -40,10 +40,10 @@ class UserRequest extends FormRequest
             'name.required' => 'O nome é obrigatório.',
             'name.string'   => 'O nome deve ser uma string.',
             'name.min'      => 'O nome deve conter no mínimo 5 caracteres.',
-            'name.max'      => 'O nome deve conter no máximo 15 caracteres.',
 
             'email.required' => 'O e-mail é obrigatório.',
             'email.email'    => 'O e-mail não é válido.',
+            'email.unique'   => 'O e-mail informado já foi cadastrado.',
 
             'password.required' => 'A senha é obrigatória.',
             'password.min'      => 'A senha deve conter no mínimo 6 caracteres.',

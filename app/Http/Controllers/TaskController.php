@@ -34,9 +34,9 @@ class TaskController extends Controller
         ], 200);
     }
 
-    public function update (TaskUpdateRequest $oldTask): JsonResponse {
+    public function update (int $id, TaskUpdateRequest $oldTask): JsonResponse {
         $task = $oldTask->all();
-        $task = $this->taskRepository->update($task);
+        $task = $this->taskRepository->update($id, $task);
         return response()->json([
             'status'  => true,
             'message' => 'Tarefa atualizada com sucesso.',
@@ -55,7 +55,8 @@ class TaskController extends Controller
     }
 
     public function delete(int $id): JsonResponse {
-        $this->taskRepository->delete($id);
+        $task = $this->taskRepository->show($id);
+        $this->taskRepository->delete($task);
         return response()->json([
             'status'  => true,
             'message' => 'Tarefa excluída com sucesso.',
