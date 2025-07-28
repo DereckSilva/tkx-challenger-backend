@@ -29,7 +29,7 @@ class TaskController extends Controller
         $tasks = $this->taskRepository->all();
         return response()->json([
             'status'  => true,
-            'message' => 'Tarefas encotradas com sucesso.',
+            'message' => 'Tarefas encontradas com sucesso.',
             'data'    => $tasks
         ], 200);
     }

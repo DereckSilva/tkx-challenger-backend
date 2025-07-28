@@ -19,6 +19,7 @@ class AuthController extends Controller
             ], 200);
         }
         return response()->json([
+            'status'  => false,
             'message' => 'Não Autorizado',
         ], 403);
     }
