@@ -8,10 +8,12 @@ use Illuminate\Support\Facades\Route;
 /* Login */
 Route::post('/login', [AuthController::class, 'login']);
 
+/* User */
+Route::post('/user', [UserController::class, 'create']);
+
 Route::middleware('auth:sanctum')->group(function () {
   
   /* User */
-  Route::post('/user', [UserController::class, 'create']);
   Route::get('/user/{id}', [UserController::class, 'index']);
   Route::patch('/user/{id}', [UserController::class, 'update']);
   

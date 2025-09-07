@@ -14,13 +14,18 @@ class AuthController extends Controller
                 'status'  => true,
                 'message' => 'Login Efetuado com Sucesso',
                 'data'    => [
-                    'token' => $request->user()->createToken('token-challenge')->plainTextToken
+                    'token' => $request->user()->createToken('token-challenge')->plainTextToken,
+                    'user'  => [
+                        'email' => $request->user()->email,
+                        'id'    => $request->user()->id,
+                        'name'  => $request->user()->name
+                    ]
                 ]
             ], 200);
         }
         return response()->json([
             'status'  => false,
-            'message' => 'Não Autorizado',
+            'message' => 'Usuário não autorizado!',
         ], 403);
     }
 

@@ -40,6 +40,7 @@ class UserRequest extends FormRequest
             'name.required' => 'O nome é obrigatório.',
             'name.string'   => 'O nome deve ser uma string.',
             'name.min'      => 'O nome deve conter no mínimo 5 caracteres.',
+            'name.max'      => 'O nome deve conter no máximo 15 caracteres',
 
             'email.required' => 'O e-mail é obrigatório.',
             'email.email'    => 'O e-mail não é válido.',
@@ -47,7 +48,6 @@ class UserRequest extends FormRequest
 
             'password.required' => 'A senha é obrigatória.',
             'password.min'      => 'A senha deve conter no mínimo 6 caracteres.',
-            'password.max'      => 'A senha deve conter no máximo 8 caracteres.',
             'password.numbers'  => 'A senha deve conter números.',
             'password.letters'  => 'A senha deve conter letras.',
             'password.symbols'  => 'A senha deve conter símbolos.',
